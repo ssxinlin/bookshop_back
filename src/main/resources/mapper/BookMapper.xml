@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.BookMapper">
+
+    <resultMap id="BookEntityMap" type="com.example.store.pojo.Book">
+        <id column="book_id" property="bookId"></id>
+        <result column="modified_user" property="modifiedUser"></result>
+        <result column="modified_time" property="modifiedTime"></result>
+    </resultMap>
+
+    <select id="getBookInfo" resultType="com.example.store.pojo.Book">
+        SELECT * FROM book_info WHERE book_name = #{bookName}
+    </select>
+
+    <insert id="addBook" useGeneratedKeys="true" keyProperty="bookId">
+        INSERT INTO book_info (
+            book_number,
+            book_name,
+            author,
+            translator,
+            price,
+            book_type,
+            is_putaway,
+            putaway_time,
+            modified_user,
+            modified_time
+        ) VALUES (
+            #{bookNumber},
+            #{bookName},
+            #{author},
+            #{translator},
+            #{price},
+            #{bookType},
+            #{isPutaway},
+            #{putawayTime},
+            #{modifiedUser},
+            #{modifiedTime}
+            )
+    </insert>
+</mapper>
